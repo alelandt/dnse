@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from . import forms
-from . import gmaps
+from .gmaps import google_lookup
 import googlemaps
 
 google_maps = googlemaps.Client(key='AIzaSyBtrgoXtMw1l4TBaRfUFteqps4EoKGLBc')
