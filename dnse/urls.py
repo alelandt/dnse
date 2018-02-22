@@ -20,5 +20,6 @@ from . import views as dnseViews
 
 app_name = "dnse"
 urlpatterns = [
+    url(r'^ajax/search/$', dnseViews.search_results, name="sresults"),
     url(r'^$', dnseViews.index, name="index"),
 ]

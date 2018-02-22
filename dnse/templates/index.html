@@ -1,2 +1,23 @@
 {% extends "base.html" %}
 {% block title %}DNSE HOME{% endblock %}
+{% block extrajs %}
+	<script type="javascript">
+		
+	</script>
+{% endblock %}
+{% block headsection %}
+<div class="jumbotron jumbotron-fluid text-center">
+	<div class="container text-center">
+		<h1 class="display-1 text-center">DNSE</h1>
+	</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+</form>
+{% endblock %}
+{% block tail %}
+
+{% endblock %}
