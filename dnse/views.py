@@ -6,8 +6,6 @@ from . import forms
 from .gmaps import google_lookup
 import googlemaps
 
-google_maps = googlemaps.Client(key='AIzaSyBtrgoXtMw1l4TBaRfUFteqps4EoKGLBc')
-
 def index(request):
     form = forms.SearchForm()
     return render(request, "index.html", {'form': form})
