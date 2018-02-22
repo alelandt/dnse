@@ -5,11 +5,14 @@ import googlemaps
 google_maps = googlemaps.Client(key='AIzaSyBs072jMQc_jZQF8ePeyVrhGk0HGyKFMXA')
 
 def google_lookup(lon, lat):
-    temp = {}
+    temp = []
     results = google_maps.reverse_geocode((lat,lon))
     print(results)
     for entries in results:
-        print(entries)
-        #if entries.shortname.contains(' ') == False:
-        #    temp.append(entries.short_name)
-    return temp
+        for items in entries.get('address_components'):
+            if str.isdigit(items.get('long_name')) != True and items.get('long_name') != 'United States':
+                temp.append(items.get('short_name'))
+            if str.isdigit(items.get('short_name')) != True and items.get('short_name') != 'United States':
+                temp.append(items.get('short_name'))
+    print(temp)
+#return temp
