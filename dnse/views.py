@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from . import forms
 from .gmaps import google_lookup
+from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
 
@@ -22,6 +23,7 @@ def search_results(request):
         location_names = google_lookup(longitude, latitude)
         load()
         wlist = segment(names.split('.')[0])
+        synlist = dict_lookup(wlist)
         return JsonResponse(', '.join(wlist) + ', '.join(location_names), safe=False)
     else:
         return JsonResponse("", safe=False)
