@@ -16,4 +16,4 @@ def google_lookup(lon, lat):
             if str.isdigit(items.get('short_name')) != True and items.get('short_name') != 'United States':
                 temp.append(items.get('short_name'))
     #print(np.unique(temp))
-return np.unique(temp)
+    return np.unique(temp)
