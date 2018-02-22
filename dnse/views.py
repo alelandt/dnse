@@ -13,7 +13,9 @@ def index(request):
 
 @csrf_exempt
 def search_results(request):
-    locationData = False
     names = request.POST.get('search_q')
-    return JsonResponse(request.POST.get('search_q'), safe=False)
+    longitude = request.POST.get('longitude')
+    latitude = request.POST.get('latitude')
+    new_names = google_lookup(longitude, latitude)
+    return JsonResponse(latitude, safe=False)
 

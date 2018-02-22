@@ -14,14 +14,13 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 					locationd.latitude = position.coords.latitude;
 					locationd.longitude = position.coords.longitude;
-					console.log(locationd);
-					});
-				} 
+				console.log(locationd.latitude + locationd.longitude);
 				$.ajax({
 					url : "ajax/search/",
 					type: 'POST',
 					data: { search_q : $('#id_search_query').val(), 
-						location_d : locationd,
+						latitude : locationd.latitude,
+						longitude : locationd.longitude,
 					
 					},
 					success : function(json) {
@@ -32,7 +31,8 @@
 					error : function(xhr, errmsg, err) {
 						console.log("git gud");
 					}
-				});
+				});});
+				}
 			});
 		
 		});
