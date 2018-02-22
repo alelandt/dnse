@@ -7,7 +7,7 @@ from .gmaps import google_lookup
 from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
-
+from .blob import strip_out
 from .valid import check_url
 
 def index(request):
@@ -21,12 +21,11 @@ def search_results(request):
         longitude = request.POST.get('longitude')
         latitude = request.POST.get('latitude')
         location_names = google_lookup(longitude, latitude)
+        locations = list(map(strip_out, location_names))
         load()
         wlist = segment(names.split('.')[0])
-        print(wlist)
         synlist = dict_lookup(wlist)
-        print(synlist)
-        newlist=[] #= synlist + location_names
+        newlist= synlist + locations
         return JsonResponse(",".join(newlist), safe=False)
     else:
         return JsonResponse("", safe=False)
