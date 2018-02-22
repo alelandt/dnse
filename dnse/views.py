@@ -13,13 +13,7 @@ def index(request):
 
 @csrf_exempt
 def search_results(request):
+    locationData = False
+    names = request.POST.get('search_q')
     return JsonResponse(request.POST.get('search_q'), safe=False)
 
-def google_lookup(request):
-    temp = []
-    address = maps.geolocate()
-    results = google_maps.search(location=address)
-    for entries in results:
-        if entries.shortname.contains(' ') == False:
-            temp.append(entries.short_name)
-    return temp

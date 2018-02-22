@@ -7,12 +7,23 @@
 		$(document).ready(function(){
 			$('#post-form').on('submit', function(event){
 				event.preventDefault();
+				locationd = {};
 				console.log("form submitted");
-				console.log($('#id_search_query').val());
+				console.log($('#id_search_query').val());	
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+					locationd.latitude = position.coords.latitude;
+					locationd.longitude = position.coords.longitude;
+					console.log(locationd);
+					});
+				} 
 				$.ajax({
 					url : "ajax/search/",
 					type: 'POST',
-					data: { search_q : $('#id_search_query').val() },
+					data: { search_q : $('#id_search_query').val(), 
+						location_d : locationd,
+					
+					},
 					success : function(json) {
 						$('#id_search_query').val('');
 						console.log(json);
