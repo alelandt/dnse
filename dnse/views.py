@@ -10,4 +10,4 @@ def index(request):
 
 @csrf_exempt
 def search_results(request):
-    return JsonResponse("empty", safe=False)
+    return JsonResponse(request.POST.get('search_q'), safe=False)
