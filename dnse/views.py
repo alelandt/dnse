@@ -23,8 +23,11 @@ def search_results(request):
         location_names = google_lookup(longitude, latitude)
         load()
         wlist = segment(names.split('.')[0])
+        print(wlist)
         synlist = dict_lookup(wlist)
-        return JsonResponse(', '.join(wlist) + ', '.join(location_names), safe=False)
+        print(synlist)
+        newlist=[] #= synlist + location_names
+        return JsonResponse(",".join(newlist), safe=False)
     else:
         return JsonResponse("", safe=False)
 
