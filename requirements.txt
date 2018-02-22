@@ -4,3 +4,4 @@ geonamescache
 googlemaps
 donuts
 wordsegment
+PyDictionary
