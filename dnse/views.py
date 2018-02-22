@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from . import forms
 from .gmaps import google_lookup
 import googlemaps
+from .valid import check_url
 
 def index(request):
     form = forms.SearchForm()
@@ -13,8 +14,11 @@ def index(request):
 @csrf_exempt
 def search_results(request):
     names = request.POST.get('search_q')
-    longitude = request.POST.get('longitude')
-    latitude = request.POST.get('latitude')
-    new_names = google_lookup(longitude, latitude)
-    return JsonResponse(latitude, safe=False)
+    if check_url(names):
+        longitude = request.POST.get('longitude')
+        latitude = request.POST.get('latitude')
+    #    new_names = google_lookup(longitude, latitude)
+        return JsonResponse(names, safe=False)
+    else:
+        return JsonResponse("", safe=False)
 
