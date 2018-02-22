@@ -4,6 +4,14 @@
 	{% load static %}
 	<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 	<script type="text/javascript">
+		function check_name(name){
+			val = name.split('.');
+			if(val.length == 2 && val[1].length > 0 && val[0].length > 0){
+				return true;
+			} else {
+				return false;
+			}
+		}
 		var lat;
 		var lng;
 		if (navigator.geolocation) {
@@ -16,10 +24,8 @@
 			$('#post-form').on('submit', function(event){
 				event.preventDefault();
 				locationd = {};
-				console.log("form submitted");
-				console.log($('#id_search_query').val());	
-				console.log(lat+lng);
-				$.ajax({
+				if(check_name($('#id_search_query').val()) == true)
+				{$.ajax({
 					url : "ajax/search/",
 					type: 'POST',
 					data: { search_q : $('#id_search_query').val(), 
@@ -35,14 +41,14 @@
 					error : function(xhr, errmsg, err) {
 						console.log("git gud");
 					}
-				});});
+				});}
+					else{ $('#test').text(''); }
+				});
 
 		$('#post-form').on('input', function(event){
 				locationd = {};
-				console.log("form submitted");
-				console.log($('#id_search_query').val());	
-				console.log(lat+lng);
-				$.ajax({
+				if(check_name($('#id_search_query').val()) == true)
+				{$.ajax({
 					url : "ajax/search/",
 					type: 'POST',
 					data: { search_q : $('#id_search_query').val(), 
@@ -57,7 +63,9 @@
 					error : function(xhr, errmsg, err) {
 						console.log("git gud");
 					}
-				});});
+				});}
+					else{ $('#test').text(''); }
+				});
 				});
 	</script>
 {% endblock %}
@@ -84,6 +92,6 @@
 {% endblock %}
 {% block tail %}
 <div class="container">
-	<p id="test">here</p>
+	<p id="test"></p>
 </div>
 {% endblock %}
