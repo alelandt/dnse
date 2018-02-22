@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from . import forms
 from .gmaps import google_lookup
 import googlemaps
+from wordsegment import load, segment
+
 from .valid import check_url
 
 def index(request):
@@ -18,7 +20,9 @@ def search_results(request):
         longitude = request.POST.get('longitude')
         latitude = request.POST.get('latitude')
     #    new_names = google_lookup(longitude, latitude)
-        return JsonResponse(names, safe=False)
+        load()
+        wlist = segment(names.split('.')[0])
+        return JsonResponse(', '.join(wlist), safe=False)
     else:
         return JsonResponse("", safe=False)
 
