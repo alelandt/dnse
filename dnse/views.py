@@ -13,16 +13,8 @@ def index(request):
 @csrf_exempt
 def search_results(request):
     names = request.POST.get('search_q')
-    nsl = names.split('.')
-    if nsl.length == 2:
-        tld = nsl[1]
-        desire = nsl[0]
-    else:
-        tld = 'homes'
-        desire = nsl[0]
-
     longitude = request.POST.get('longitude')
     latitude = request.POST.get('latitude')
-    new_names = google_lookup(longitude, latitude)
-    return JsonResponse(nsl, safe=False)
+#    new_names = google_lookup(longitude, latitude)
+    return JsonResponse(names, safe=False)
 
