@@ -19,10 +19,10 @@ def search_results(request):
     if check_url(names):
         longitude = request.POST.get('longitude')
         latitude = request.POST.get('latitude')
-        new_names = google_lookup(longitude, latitude)
+        location_names = google_lookup(longitude, latitude)
         load()
         wlist = segment(names.split('.')[0])
-        return JsonResponse(', '.join(wlist), safe=False)
+        return JsonResponse(', '.join(wlist) + ', '.join(location_names), safe=False)
     else:
         return JsonResponse("", safe=False)
 
