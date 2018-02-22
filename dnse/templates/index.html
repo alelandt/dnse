@@ -1,8 +1,30 @@
 {% extends "base.html" %}
 {% block title %}DNSE HOME{% endblock %}
 {% block extrajs %}
-	<script type="javascript">
+	{% load static %}
+	<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#post-form').on('submit', function(event){
+				event.preventDefault();
+				console.log("form submitted");
+				console.log($('#id_search_query').val());
+				$.ajax({
+					url : "ajax/search/",
+					type: 'POST',
+					data: { search_q : $('#id_search_query').val() },
+					success : function(json) {
+						$('#id_search_query').val('');
+						console.log(json);
+						$('#test').val(json);
+					},
+					error : function(xhr, errmsg, err) {
+						console.log("git gud");
+					}
+				});
+			});
 		
+		});
 	</script>
 {% endblock %}
 {% block headsection %}
@@ -14,10 +36,14 @@
 {% endblock %}
 
 {% block content %}
-<form method="post">
+<form action="/ajax/search/" method="post" id="post-form">
 	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit" />
 </form>
 {% endblock %}
 {% block tail %}
-
+<div class="container">
+	<p id="test">here</p>
+</div>
 {% endblock %}
