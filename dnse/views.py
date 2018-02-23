@@ -35,7 +35,9 @@ def search_results(request):
         for entries in retlist:
             if SequenceMatcher(None,temp,entries).ratio() >= 0.5:
                 returnlist.append(entries)
-        return JsonResponse({"retlist": returnlist}, safe=False)
+
+        mylist = sorted(returnlist, key=lambda x: temp,reverse=False)
+        return JsonResponse({"retlist": mylist}, safe=False)
     else:
         return JsonResponse("", safe=False)
 
