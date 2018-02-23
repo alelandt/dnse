@@ -1,6 +1,13 @@
 from wordsegment import load, segment
 import itertools
 
+def strip_tld(rlist):
+    retrnl = []
+    for x in rlist:
+        y = x.split('.')[0]
+        retrnl.append(y)
+    return retrnl
+
 def exact_check(inlist, orig):
     ende = []
     for x in inlist:

@@ -7,7 +7,7 @@ from .gmaps import google_lookup
 from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
-from .blob import strip_out, combine_all, strip_space, check_data, exact_check
+from .blob import strip_tld, strip_out, combine_all, strip_space, check_data, exact_check
 from .valid import check_url
 import json
 from difflib import SequenceMatcher
@@ -29,7 +29,8 @@ def search_results(request):
         load()
         wlist = segment(names.split('.')[0])
         synlist = dict_lookup(wlist)
-        retlist = combine_all(locations, synlist, tlds, True)
+        retlist = combine_all(locations, synlist, tlds)
+        templist = list(map(strip_tld, retlist))
         returnlist = []
         temp = names.split('.')[0]
         for entries in retlist:
