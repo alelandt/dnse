@@ -54,6 +54,8 @@
 						mlist = json.retlist.reverse();
 						if(mlist.length > 20)
 							mlist = mlist.slice(0, 19);
+						$('#resultbox').empty();
+						mlist = fys(mlist);
 						for ( let w of mlist){
 						$('#resultbox').append($('<li>', { class: 'list-group-item', text: w }));
 						}
