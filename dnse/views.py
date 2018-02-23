@@ -7,9 +7,11 @@ from .gmaps import google_lookup
 from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
-from .blob import strip_out
+from .blob import strip_out, combine_all
 from .valid import check_url
-
+import json
+# lol this is a mess
+tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles']
 def index(request):
     form = forms.SearchForm()
     return render(request, "index.html", {'form': form})
@@ -25,8 +27,9 @@ def search_results(request):
         load()
         wlist = segment(names.split('.')[0])
         synlist = dict_lookup(wlist)
-        newlist= synlist + locations
-        return JsonResponse(",".join(newlist), safe=False)
+        retlist = combine_all(locations, synlist, tlds) 
+        
+        return JsonResponse({"retlist": retlist}, safe=False)
     else:
         return JsonResponse("", safe=False)
 
