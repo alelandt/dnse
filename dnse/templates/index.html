@@ -57,7 +57,8 @@
 						$('#resultbox').empty();
 					//	mlist = fys(mlist);
 						for ( let w of mlist){
-						$('#resultbox').append($('<li>', { class: 'list-group-item', text: w }));
+						$('#resultbox').append($('<li>', { class: 'list-group-item', text: w, id: w, }));
+						
 						}
 					},
 					error : function(xhr, errmsg, err) {
