@@ -5,3 +5,5 @@ googlemaps
 donuts
 wordsegment
 PyDictionary
+textblob
+nltk
