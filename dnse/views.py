@@ -10,6 +10,8 @@ from wordsegment import load, segment
 from .blob import strip_out, combine_all
 from .valid import check_url
 import json
+from difflib import SequenceMatcher
+
 # lol this is a mess
 tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles']
 def index(request):
@@ -28,8 +30,12 @@ def search_results(request):
         wlist = segment(names.split('.')[0])
         synlist = dict_lookup(wlist)
         retlist = combine_all(locations, synlist, tlds)
-
-        return JsonResponse({"retlist": retlist}, safe=False)
+        returnlist = []
+        temp = names.split('.')[0]
+        for entries in retlist:
+            if SequenceMatcher(None,temp,entries).ratio() >= 0.5:
+                returnlist.append(entries)
+        return JsonResponse({"retlist": returnlist}, safe=False)
     else:
         return JsonResponse("", safe=False)
 
