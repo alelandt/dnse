@@ -27,7 +27,7 @@ def verisign_mass_lookup(names):
         myheader={'X-NAMESUGGESTION':'676226de70489ae087ba1cd63cf9345a'}
 
         r = requests.get(url, headers=myheader)
-        t = json.load(r.text)
+        t = json.loads(r.text)
         print(url)
     else:
         query = ','.join(names)
@@ -36,12 +36,11 @@ def verisign_mass_lookup(names):
         myheader={'X-NAMESUGGESTION':'676226de70489ae087ba1cd63cf9345a'}
 
         r = requests.get(url, headers=myheader)
-        t = json.load(r.text)
+        t = json.loads(r.text)
         print(url)
-
+    
     for items in t['results']:
-        print(items['name'])
-
+        temp.append(items['name'])
     #results=r.text
     #fme'or entries in results:
     #    for items in entries.get('results'):

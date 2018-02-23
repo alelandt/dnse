@@ -42,6 +42,7 @@ def search_results(request):
         mylist = list(map(strip_space, mylist))
         finalval = check_data(mylist)
         newlist = verisign_mass_lookup(finalval)
+        print(newlist) 
         return JsonResponse({"retlist": newlist}, safe=False)
     else:
         return JsonResponse("", safe=False)
