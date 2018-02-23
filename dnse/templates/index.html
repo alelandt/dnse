@@ -66,8 +66,14 @@ body {
 						factor = Math.pow(10, 2);
 						price = Math.round(price *factor)/factor;
 						price.toFixed(2);
-					$(id).append($('<button>', { class: 'float-right btn btn-secondary', text: "Buy"}));
-		$(id).append($('<span>', { class: 'badge badge-default badge-pill float-right', text: price}));
+						if(price > 20)
+							$(id).append($('<button>', { class: 'float-right btn btn-success', text: "Buy"}));
+						else
+							$(id).append($('<button>', { class: 'float-right btn btn-success', text: "Buy"}));
+
+							
+							strn = "$" + price;
+		$(id).append($('<span>', { class: 'badge badge-default badge-pill float-right', text: strn}));
 						
 						}
 					},
@@ -130,7 +136,7 @@ body {
 {% block content %}
 <hr />
 <div class="container" id="home">
-	<ul class="list-group" id="resultbox">
+	<ul class="list-group border" id="resultbox">
 
 	</ul>
 </div>
