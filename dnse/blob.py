@@ -21,7 +21,7 @@ def check_data(alist):
 
         fin = open('Reserved', 'r').readlines()
         for line in fin:
-            if y in line:
+            if x in line:
                 fail = True
         if fail == False:
             replist.append(x)
