@@ -33,7 +33,7 @@ def search_results(request):
         returnlist = []
         temp = names.split('.')[0]
         for entries in retlist:
-            if SequenceMatcher(None,names,entries).ratio() >= 0.5:
+            if SequenceMatcher(None,temp,entries).ratio() >= 0.5:
                 returnlist.append(entries)
         return JsonResponse({"retlist": returnlist}, safe=False)
     else:
