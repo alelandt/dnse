@@ -35,7 +35,10 @@
 					},
 					success : function(json) {
 						console.log(json);
-						$('#test').text(json.retlist[0]);
+
+						for ( let w of json.retlist){
+						$('#resultbox').append($('<li>', { class: 'list-group-item', text: w }));
+						}
 					},
 					error : function(xhr, errmsg, err) {
 						console.log("git gud");
@@ -95,7 +98,9 @@
 <hr />
 {% endblock %}
 {% block tail %}
-<div class="container">
-	<p id="test"></p>
+<div class="container" id="home">
+	<ul class="list-group" id="resultbox">
+
+	</ul>
 </div>
 {% endblock %}
