@@ -43,10 +43,10 @@ def combine_all(locations, syn, tldd, addtld):
     garbage = list(map(''.join, itertools.chain(itertools.product(locations, syn), itertools.product(syn, locations))))
     garbage += list(map(''.join, itertools.chain(itertools.product(syn, syn))))
     garbage += syn;
-    if(addtld == True)
-    topGarbage = list(map('.'.join, itertools.chain(itertools.product(garbage,tldd))))
-    else
-    topGarbage = garbage
+    if addtld == True:
+        topGarbage = list(map('.'.join, itertools.chain(itertools.product(garbage,tldd))))
+    else:
+        topGarbage = garbage
 
     return topGarbage
     
