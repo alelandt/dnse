@@ -13,7 +13,7 @@ import json
 from difflib import SequenceMatcher
 
 # lol this is a mess
-tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles']
+tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles', 'com', 'org', 'net', 'xxx']
 def index(request):
     form = forms.SearchForm()
     return render(request, "index.html", {'form': form})
@@ -33,7 +33,7 @@ def search_results(request):
         returnlist = []
         temp = names.split('.')[0]
         for entries in retlist:
-            if SequenceMatcher(None,temp,entries).ratio() >= 0.5:
+            if SequenceMatcher(None,names,entries).ratio() >= 0.5:
                 returnlist.append(entries)
         return JsonResponse({"retlist": returnlist}, safe=False)
     else:
