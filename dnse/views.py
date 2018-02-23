@@ -7,7 +7,7 @@ from .gmaps import google_lookup
 from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
-from .blob import strip_out, combine_all
+from .blob import strip_out, combine_all, strip_space
 from .valid import check_url
 import json
 from difflib import SequenceMatcher
@@ -37,6 +37,7 @@ def search_results(request):
                 returnlist.append(entries)
 
         mylist = sorted(returnlist, key=lambda x: temp,reverse=False)
+        mylist = list(map(strip_space, mylist)) 
         return JsonResponse({"retlist": mylist}, safe=False)
     else:
         return JsonResponse("", safe=False)

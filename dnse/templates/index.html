@@ -35,8 +35,10 @@
 					},
 					success : function(json) {
 						console.log(json);
-
-						for ( let w of json.retlist){
+						mlist = json.retlist.reverse();
+						if(mlist.length > 20)
+							mlist = mlist.slice(0, 19);
+						for ( let w of mlist){
 						$('#resultbox').append($('<li>', { class: 'list-group-item', text: w }));
 						}
 					},

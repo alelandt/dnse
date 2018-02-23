@@ -1,6 +1,10 @@
 from wordsegment import load, segment
 import itertools
 
+def strip_space(name):
+    cleared = str.replace(name, " ", "")
+    return cleared
+
 def strip_out(name):
     cleared = str.replace(name, "*", "")
     cleared = str.replace(cleared, " ", "")
