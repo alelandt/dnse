@@ -35,7 +35,7 @@ def search_results(request):
         for entries in retlist:
             if SequenceMatcher(None,temp,entries).ratio() >= 0.5:
                 returnlist.append(entries)
-
+        returnlist = list(set(returnlist))
         mylist = sorted(returnlist, key=lambda x: temp,reverse=False)
         mylist = list(map(strip_space, mylist)) 
         finalval = check_data(mylist)

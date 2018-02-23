@@ -65,7 +65,7 @@ body {
 						price = Math.random() < 0.5 ? ((1-Math.random()) * (50-0.99) + 0.99) : (Math.random() * (50-0.99)+0.99);
 						factor = Math.pow(10, 2);
 						price = Math.round(price *factor)/factor;
-						price.toFixed(2);
+						price = price.toFixed(2);
 						if(price > 20)
 							$(id).append($('<button>', { class: 'float-right btn btn-success', text: "Buy"}));
 						else
@@ -73,7 +73,7 @@ body {
 
 							
 							strn = "$" + price;
-		$(id).append($('<span>', { class: 'badge badge-default badge-pill float-right', text: strn}));
+		$(id).append($('<span>', { class: 'badge float-right', text: strn}));
 						
 						}
 					},
