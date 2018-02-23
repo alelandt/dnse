@@ -11,6 +11,7 @@ def strip_out(name):
 
 def combine_all(locations, syn, tldd):
     garbage = list(map(''.join, itertools.chain(itertools.product(locations, syn), itertools.product(syn, locations))))
-    
-    return garbage
+    topGarbage = list(map('.'.join, itertools.chain(itertools.product(garbage,tldd))))
+
+    return topGarbage
     

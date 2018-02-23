@@ -35,7 +35,7 @@
 					},
 					success : function(json) {
 						console.log(json);
-						$('#test').text(json);
+						$('#test').text(json.retlist[0]);
 					},
 					error : function(xhr, errmsg, err) {
 						console.log("git gud");
