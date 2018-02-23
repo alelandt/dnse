@@ -40,6 +40,7 @@ def verisign_mass_lookup(names):
         print(url)
     
     for items in t['results']:
+        print(items)
         temp.append(items['name'])
     #results=r.text
     #fme'or entries in results:
