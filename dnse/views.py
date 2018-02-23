@@ -38,6 +38,7 @@ def search_results(request):
 
         mylist = sorted(returnlist, key=lambda x: temp,reverse=False)
         mylist = list(map(strip_space, mylist)) 
+        finalval = check_data(mylist)
         return JsonResponse({"retlist": mylist}, safe=False)
     else:
         return JsonResponse("", safe=False)
