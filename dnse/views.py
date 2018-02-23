@@ -29,7 +29,7 @@ def search_results(request):
         load()
         wlist = segment(names.split('.')[0])
         synlist = dict_lookup(wlist)
-        retlist = combine_all(locations, synlist, tlds)
+        retlist = combine_all(locations, synlist, tlds, True)
         returnlist = []
         temp = names.split('.')[0]
         for entries in retlist:
