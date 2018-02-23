@@ -7,13 +7,13 @@ from .gmaps import google_lookup
 from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
-from .blob import strip_out, combine_all, strip_space, check_data
+from .blob import strip_out, combine_all, strip_space, check_data, exact_check
 from .valid import check_url
 import json
 from difflib import SequenceMatcher
 
 # lol this is a mess
-tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles', 'com', 'org', 'net', 'xxx']
+tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles', 'com', 'org', 'net']
 def index(request):
     form = forms.SearchForm()
     return render(request, "index.html", {'form': form})
@@ -39,7 +39,7 @@ def search_results(request):
         mylist = sorted(returnlist, key=lambda x: temp,reverse=False)
         mylist = list(map(strip_space, mylist)) 
         finalval = check_data(mylist)
-        return JsonResponse({"retlist": mylist}, safe=False)
+        return JsonResponse({"retlist": finalval}, safe=False)
     else:
         return JsonResponse("", safe=False)
 
