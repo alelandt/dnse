@@ -111,14 +111,14 @@ body {
 {% endblock %}
 {% block headsection %}
 <div class="jumbotron jumbotron-fluid text-center bg-info">
-	<div class="container">
+	<div class="container justify-content-center">
 	<div class="container text-center">
 		<h1 class="display-2 text-center text-white" style="font-family: 'crap';">DynaDomain</h1>
 	</div>
-<div class="container-fluid">
+<div class="container-fluid justify-content-center">
 	<div class="row justify-content-center">
 		<div class="input-group justify-content-center">
-<form action="/ajax/search/" method="post" id="post-form" class="form-inline form-control-lg" style="width: 50%;">
+<form action="/ajax/search/" method="post" id="post-form" class="form-inline form-control-lg" style="width: 60%;">
 	{% csrf_token %}
 	{{ form }}
 	<span class="input-group-btn">
