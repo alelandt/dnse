@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}DNSE HOME{% endblock %}
+{% block title %}Diamon Domains{% endblock %}
 {% block extrajs %}
 	{% load static %}
 	<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
@@ -72,15 +72,17 @@
 {% block headsection %}
 <div class="jumbotron jumbotron-fluid text-center bg-info">
 	<div class="container text-center">
-		<h1 class="display-3 text-center">Name Friend</h1>
+		<h1 class="display-1 text-center">Diamon DNS</h1>
 	</div>
 <div class="container-fluid">
 	<div class="row justify-content-center">
+		<div class="input-group mb-3">
 <form action="/ajax/search/" method="post" id="post-form">
 	{% csrf_token %}
 	{{ form }}
-	<input type="submit" value="Check Name" />
+	<input type="submit" class="btn btn-primary" value="Check Name" />
 </form>
+		</div>
 	</div>
 </div>
 
