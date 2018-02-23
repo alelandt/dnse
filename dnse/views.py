@@ -7,7 +7,7 @@ from .gmaps import google_lookup
 from .dict import dict_lookup
 import googlemaps
 from wordsegment import load, segment
-from .blob import strip_out, combine_all, strip_space
+from .blob import strip_out, combine_all, strip_space, check_data
 from .valid import check_url
 import json
 from difflib import SequenceMatcher
