@@ -11,6 +11,7 @@ from .blob import strip_tld, strip_out, combine_all, strip_space, check_data, ex
 from .valid import check_url
 import json
 from difflib import SequenceMatcher
+from .searches import verisign_mass_lookup
 
 # lol this is a mess
 tlds = ['boats', 'yachts', 'homes', 'autos', 'motorcycles', 'com', 'org', 'net']
@@ -38,9 +39,10 @@ def search_results(request):
                 returnlist.append(entries)
         returnlist = list(set(returnlist))
         mylist = sorted(returnlist, key=lambda x: temp,reverse=False)
-        mylist = list(map(strip_space, mylist)) 
+        mylist = list(map(strip_space, mylist))
         finalval = check_data(mylist)
-        return JsonResponse({"retlist": finalval}, safe=False)
+        newlist = verisign_mass_lookup(finalval)
+        return JsonResponse({"retlist": newlist}, safe=False)
     else:
         return JsonResponse("", safe=False)
 
